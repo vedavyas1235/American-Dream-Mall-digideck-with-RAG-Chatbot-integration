@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import './ScaleSection.css'
 
-export default function CatchmentSection({ onNext, onSkipIntro, goToSlideById }: any) {
+export default function CatchmentSection() {
   const [inView, setInView] = useState(false)
   const ref = useRef<HTMLElement>(null)
 

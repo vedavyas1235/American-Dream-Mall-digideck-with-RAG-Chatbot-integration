@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useDeck } from '../components/Deck/DeckEngine'
 import '../pages/EventsPage.css' // Reuse the timeline and card styling
 
 const PAST_EVENTS = [

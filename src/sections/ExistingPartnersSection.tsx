@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useDeck } from '../components/Deck/DeckEngine'
 import './ExistingPartnersSection.css'
 
 const CURRENT_PARTNERS = [
@@ -117,11 +116,9 @@ const CURRENT_PARTNERS = [
 ]
 
 export default function ExistingPartnersSection() {
-  const { goToSlideById } = useDeck()
   const [current, setCurrent] = useState(0)
   const [inView, setInView] = useState(false)
   const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const [glowBtn, setGlowBtn] = useState(false)
   
   const ref = useRef<HTMLElement>(null)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -131,7 +128,6 @@ export default function ExistingPartnersSection() {
       ([entry]) => { 
         if (entry.isIntersecting) {
             setInView(true)
-            setTimeout(() => setGlowBtn(true), 6000)
         }
       },
       { threshold: 0.15 }

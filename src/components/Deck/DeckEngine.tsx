@@ -29,9 +29,6 @@ import EventHistorySection from '../../sections/EventHistorySection'
 import CTASection from '../../sections/CTASection'
 
 // ── Page imports (Phase 2) ───────────────────────────────────────────────────
-import LeasingPage from '../../pages/LeasingPage'
-import SponsorsPage from '../../pages/SponsorsPage'
-import EventsPage from '../../pages/EventsPage'
 import VenuesPage from '../../pages/VenuesPage'
 
 import './Deck.css'

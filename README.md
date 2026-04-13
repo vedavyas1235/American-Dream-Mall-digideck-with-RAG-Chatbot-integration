@@ -9,16 +9,19 @@
 
 This project serves as a comprehensive, B2B-focused digital sales and leasing platform for the American Dream Mall—North America's largest entertainment and retail complex. It is designed to attract ultra-luxury retail partners, major brands, and global sponsors by showcasing the property's immense scale, architectural grandeur, and unprecedented foot traffic.
 
-To provide immediate, data-backed answers to prospective investors and retail partners, the platform features a fully custom **AI Chatbot integrated directly into the web interface**. The chatbot is bound strictly to internal research reports, ensuring it provides accurate, non-hallucinated leasing figures and architectural statistics using an advanced RAG pipeline.
+The platform has been redesigned into a modular, non-linear digital deck. It features a sophisticated **Events & Platform** chapter that guides users through a deep-dive of the mall's 40M+ annual audience and versatile venue technical specifications via a split-screen interactive directory.
+
+To provide immediate, data-backed answers, the platform features a fully custom **RAG-powered AI Assistant** integrated into the final "Partner With Us" stage. The chatbot is bound strictly to internal research reports, ensuring it provides accurate, non-hallucinated leasing figures and architectural statistics.
 
 ---
 
 ## ✨ Core Features
 
-*   **Premium, Dynamic Luxury UI:** Built with Framer Motion, the frontend utilizes glassmorphism, responsive micro-animations, and smooth-scrolling data reveals to match the aesthetic of high-end luxury brands (Gucci, Saint Laurent, Hermès).
-*   **Intelligent Leasing Assistant:** An integrated floating Chatbot provides instant, data-driven answers parsed exclusively from a confidential American Dream Mall Research Report.
-*   **Modular Component Architecture:** A highly scalable React structure organized by specific business offerings (e.g., Luxury The Avenue, Nickelodeon Theme Park Attractions, Fine Dining, Pop-up leasing).
-*   **Decoupled & Cloud-Ready Architecture:** The frontend is fully decoupled from the AI logic, enabling the React app to be hosted rapidly on Vercel while the heavy machine-learning backend operates exclusively in a Hugging Face Space Docker container.
+*   **Premium, Dynamic Luxury UI:** Built with Framer Motion, the frontend utilizes glassmorphism, responsive micro-animations, and smooth-scrolling data reveals to match the aesthetic of high-end luxury brands.
+*   **Intelligent RAG Assistant:** An integrated floating AI Chatbot on the final slide provides instant, data-driven answers parsed exclusively from a confidential American Dream Mall Research Report, connected live to a Hugging Face Space backend.
+*   **Modular Events & Platform Architecture:** A restructured sequence including Events Overview, interactive Venue Directory (split-screen technical specs), and Event History with cascading interaction cues.
+*   **Non-Linear Navigation:** A tailored user flow that restricts standard pagination on interactive slides, forcing engagement with custom navigation buttons (e.g., "See Venue Directory →") to ensure a guided narrative experience.
+*   **Compact CTA Interface:** A streamlined, single-viewport final slide for partner inquiries, optimized for zero-scroll interaction and high-speed lead generation.
 
 ---
 
