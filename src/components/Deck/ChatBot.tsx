@@ -1,0 +1,189 @@
+import { useState, useEffect, useRef } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import './ChatBot.css'
+
+interface Message {
+  role: 'user' | 'assistant'
+  text: string
+}
+
+const API_BASE = import.meta.env.VITE_RAG_API_URL ?? 'http://localhost:8000'
+
+async function queryRAG(question: string): Promise<string> {
+  const res = await fetch(`${API_BASE}/ask`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question }),
+  })
+
+  if (!res.ok) {
+    const err = await res.text()
+    throw new Error(`Backend error ${res.status}: ${err}`)
+  }
+
+  const data = await res.json()
+  return data.answer ?? JSON.stringify(data)
+}
+
+export default function ChatBot({ isLastSlide }: { isLastSlide: boolean }) {
+  const [open, setOpen] = useState(false)
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: 'assistant',
+      text: "Hi! I'm the American Dream AI assistant. Ask me anything about leasing, events, partnerships, or venue bookings.",
+    },
+  ])
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const bottomRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages, loading])
+
+  // Close chat when navigating away from last slide
+  useEffect(() => {
+    if (!isLastSlide) setOpen(false)
+  }, [isLastSlide])
+
+  const sendMessage = async () => {
+    const text = input.trim()
+    if (!text || loading) return
+
+    setInput('')
+    setError(null)
+    setMessages(prev => [...prev, { role: 'user', text }])
+    setLoading(true)
+
+    try {
+      const reply = await queryRAG(text)
+      setMessages(prev => [...prev, { role: 'assistant', text: reply }])
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Unknown error'
+      setError(msg)
+      setMessages(prev => [
+        ...prev,
+        {
+          role: 'assistant',
+          text: "Sorry, I couldn't reach the backend right now. Please ensure the RAG server is running and try again.",
+        },
+      ])
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleKey = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      sendMessage()
+    }
+  }
+
+  if (!isLastSlide) return null
+
+  return (
+    <>
+      {/* Topbar chat trigger button */}
+      <motion.button
+        className="chatbot-topbar-btn"
+        onClick={() => setOpen(o => !o)}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.4, delay: 0.5 }}
+        aria-label="Open AI assistant"
+        title="Ask our AI assistant"
+      >
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+        </svg>
+        <span>Ask AI</span>
+      </motion.button>
+
+      {/* Chat panel */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            className="chatbot-panel"
+            initial={{ opacity: 0, y: 20, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.96 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          >
+            {/* Header */}
+            <div className="chatbot-panel__header">
+              <div className="chatbot-panel__title">
+                <span className="chatbot-panel__dot" />
+                American Dream AI
+              </div>
+              <button
+                className="chatbot-panel__close"
+                onClick={() => setOpen(false)}
+                aria-label="Close chat"
+              >
+                ×
+              </button>
+            </div>
+
+            {/* Messages */}
+            <div className="chatbot-panel__messages">
+              {messages.map((msg, i) => (
+                <div key={i} className={`chatbot-msg chatbot-msg--${msg.role}`}>
+                  {msg.role === 'assistant' && (
+                    <span className="chatbot-msg__avatar">✦</span>
+                  )}
+                  <p className="chatbot-msg__text">{msg.text}</p>
+                </div>
+              ))}
+
+              {loading && (
+                <div className="chatbot-msg chatbot-msg--assistant">
+                  <span className="chatbot-msg__avatar">✦</span>
+                  <p className="chatbot-msg__text chatbot-msg--typing">
+                    <span /><span /><span />
+                  </p>
+                </div>
+              )}
+
+              {error && (
+                <p className="chatbot-error">{error}</p>
+              )}
+
+              <div ref={bottomRef} />
+            </div>
+
+            {/* Input */}
+            <div className="chatbot-panel__input-row">
+              <textarea
+                className="chatbot-panel__input"
+                placeholder="Ask about venues, leasing, events…"
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={handleKey}
+                rows={1}
+              />
+              <button
+                className="chatbot-panel__send"
+                onClick={sendMessage}
+                disabled={!input.trim() || loading}
+                aria-label="Send message"
+              >
+                →
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}

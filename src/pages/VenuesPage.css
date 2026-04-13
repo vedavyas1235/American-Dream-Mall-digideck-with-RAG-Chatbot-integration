@@ -1,0 +1,287 @@
+/* ============================================
+   VENUES PAGE (SPLIT SCREEN LAYOUT)
+   ============================================ */
+
+.vp-split-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
+/* ============================================
+   LEFT HALF (HERO)
+   ============================================ */
+.vp-split-left {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+}
+
+.vp-left-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.6) saturate(1.1);
+  z-index: 0;
+}
+
+.vp-left-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(8, 8, 8, 0.96) 0%, rgba(8, 8, 8, 0.7) 60%, transparent 100%);
+  z-index: 1;
+}
+
+.vp-left-content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.vp-left-title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5.5vw, 72px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--color-white);
+  margin: 16px 0 24px;
+}
+
+.vp-left-title em {
+  font-style: italic;
+  color: var(--color-gold);
+}
+
+.vp-left-desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--color-white-dim);
+  margin-top: 24px;
+}
+
+/* ============================================
+   RIGHT HALF (INTERACTIVE DIRECTORY)
+   ============================================ */
+.vp-split-right {
+  flex: 1.2; /* slightly wider to fit tables cleanly */
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 80px 40px 40px;
+}
+
+/* Tabs */
+.vp-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-shrink: 0;
+}
+
+.vp-tab {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: var(--color-white-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.vp-tab:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.vp-tab--active {
+  background: var(--v-color, var(--color-gold));
+  border-color: var(--v-color, var(--color-gold));
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Selected Venue Details */
+.vp-detail-card {
+  flex: 1;
+  background: rgba(15, 15, 15, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto; /* Just in case screen height is very small */
+}
+
+/* Scrollbar for detail card if needed */
+.vp-detail-card::-webkit-scrollbar { width: 4px; }
+.vp-detail-card::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 2px; }
+
+.vp-detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.vp-detail-type {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.vp-detail-location {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-white-muted);
+}
+
+.vp-detail-name {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.vp-detail-tagline {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-white-dim);
+  margin-bottom: 24px;
+  font-style: italic;
+}
+
+/* KPIs */
+.vp-detail-kpis {
+  display: flex;
+  gap: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 24px;
+}
+
+.vp-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vp-kpi-val {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 1;
+}
+
+.vp-kpi-lbl {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--color-white-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Technical Details Grid */
+.vp-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  flex: 1;
+}
+
+.vp-grid-title {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-white);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.vp-specs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.vp-specs-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.spec-lbl {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+}
+
+.spec-val {
+  color: var(--color-white-dim);
+}
+
+.vp-uses-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vp-use-tag {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-white-muted);
+}
+
+/* Footer Action */
+.vp-detail-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vp-lead-time {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-white-muted);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 1024px) {
+  .vp-split-container { flex-direction: column; height: auto; overflow: visible; }
+  .vp-split-left { padding: 100px 40px 60px; min-height: 50vh; }
+  .vp-split-right { height: auto; padding: 40px; }
+  .vp-detail-grid { grid-template-columns: 1fr; }
+}

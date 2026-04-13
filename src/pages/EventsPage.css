@@ -1,0 +1,149 @@
+/* ============================================
+   EVENTS PAGE
+   ============================================ */
+.ep { background: var(--color-bg); min-height: 100vh; }
+
+.ep-hero {
+  position: relative; min-height: 90vh;
+  display: flex; align-items: center;
+}
+.ep-hero__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.7); }
+.ep-hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(8,8,8,0.96) 0%, rgba(8,8,8,0.7) 60%, rgba(8,8,8,0.3) 100%);
+}
+.ep-hero__content { 
+  position: relative; 
+  z-index: 2; 
+  padding: 0; 
+  max-width: 900px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.ep-hero__title { font-family: var(--font-display); font-size: clamp(48px, 5.5vw, 80px); font-weight: 300; line-height: 1.02; color: var(--color-white); margin: 16px 0 12px; text-align: center; }
+.ep-hero__title em { font-style: italic; color: var(--color-gold); }
+.ep-hero__desc { font-family: var(--font-body); font-size: 16px; line-height: 1.9; color: var(--color-white-dim); margin: 24px auto 36px; max-width: 540px; text-align: center; }
+
+.event-history-btn {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  z-index: 10;
+  background: transparent;
+  border: 1px solid var(--color-gold-muted);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.event-history-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.event-history-btn--glow {
+  animation: ep-btn-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-color: var(--color-gold);
+}
+
+@keyframes ep-btn-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+
+/* Stats Box */
+.ep-stats-box {
+  position: relative;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 32px 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 64px;
+  z-index: 10;
+  border-radius: 4px;
+  width: max-content;
+  margin-top: 16px;
+}
+
+.ep-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.ep-stat__value { font-family: var(--font-display); font-size: 24px; font-weight: 300; color: var(--color-gold); line-height: 1; text-align: center; }
+.ep-stat__label { font-family: var(--font-body); font-size: 10px; font-weight: 600; color: var(--color-white); letter-spacing: 0.05em; text-align: center; margin-top: 4px; }
+.ep-stat__sub { font-family: var(--font-body); font-size: 9px; color: var(--color-white-muted); text-align: center; }
+
+/* Timeline section */
+.ep-timeline { padding: 100px 80px; }
+.ep-timeline__inner { max-width: 1200px; margin: 0 auto; }
+.ep-timeline__header { margin-bottom: 48px; }
+
+/* Filters */
+.ep-filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+.ep-filter {
+  background: none; border: 1px solid rgba(255,255,255,0.12);
+  color: var(--color-white-muted); font-family: var(--font-body);
+  font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+  padding: 9px 18px; cursor: pointer;
+  transition: all 0.2s ease;
+}
+.ep-filter:hover { border-color: var(--color-gold); color: var(--color-gold); }
+.ep-filter--active { background: var(--color-gold); border-color: var(--color-gold); color: var(--color-bg); }
+
+/* Event grid */
+.ep-event-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; }
+.ep-event-card {
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+  padding: 28px; transition: background 0.2s ease;
+}
+.ep-event-card:hover { background: rgba(255,255,255,0.04); }
+.ep-event-card__top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.ep-event-card__year { font-family: var(--font-display); font-size: 13px; color: var(--color-gold); font-weight: 400; }
+.ep-event-card__type { font-family: var(--font-body); font-size: 9px; font-weight: 600; letter-spacing: 0.2em; color: var(--color-white-muted); text-transform: uppercase; }
+.ep-event-card__name { font-family: var(--font-display); font-size: 22px; font-weight: 300; color: var(--color-white); margin-bottom: 8px; line-height: 1.1; }
+.ep-event-card__venue { display: block; font-family: var(--font-body); font-size: 11px; color: var(--color-gold); margin-bottom: 12px; }
+.ep-event-card__desc { font-family: var(--font-body); font-size: 13px; line-height: 1.75; color: var(--color-white-muted); }
+
+/* Year accordion */
+.ep-years { display: flex; flex-direction: column; gap: 2px; }
+.ep-year { border: 1px solid rgba(255,255,255,0.06); }
+.ep-year__toggle {
+  width: 100%; display: flex; align-items: center; gap: 24px;
+  background: rgba(255,255,255,0.02); border: none;
+  padding: 24px 28px; cursor: pointer; text-align: left;
+  transition: background 0.2s ease;
+}
+.ep-year__toggle:hover, .ep-year__toggle--open { background: rgba(255,255,255,0.04); }
+.ep-year__label { font-family: var(--font-display); font-size: 32px; font-weight: 300; color: var(--color-white); }
+.ep-year__toggle--open .ep-year__label { color: var(--color-gold); }
+.ep-year__count { font-family: var(--font-body); font-size: 11px; color: var(--color-white-muted); letter-spacing: 0.1em; flex: 1; }
+.ep-year__arrow { font-family: var(--font-body); font-size: 22px; color: var(--color-gold); transition: all 0.3s ease; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; }
+
+.ep-year__arrow--glow {
+  animation: ep-plus-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes ep-plus-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); background: rgba(201, 168, 76, 0.1); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); background: transparent; }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); background: transparent; }
+}
+
+.ep-year__events { overflow: hidden; }
+.ep-year__events .ep-event-grid { border-top: 1px solid rgba(255,255,255,0.05); }
+
+@media (max-width: 900px) {
+  .ep-hero__content { padding: 100px 24px 60px; }
+  .ep-timeline { padding: 60px 24px; }
+  .ep-stats { grid-template-columns: repeat(3, 1fr); }
+  .ep-event-grid { grid-template-columns: 1fr; }
+}

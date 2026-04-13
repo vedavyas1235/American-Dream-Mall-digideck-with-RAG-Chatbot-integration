@@ -1,0 +1,187 @@
+/* =========================================
+   ENTRY SCREEN
+   ========================================= */
+
+.entry-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* Ambient glow orb */
+.entry-screen__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 168, 76, 0.07) 0%,
+    rgba(201, 168, 76, 0.03) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: entry-pulse 5s ease-in-out infinite;
+}
+
+@keyframes entry-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+}
+
+/* Subtle grid texture overlay */
+.entry-screen__grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201, 168, 76, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 168, 76, 0.03) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+/* Content container */
+.entry-screen__content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  padding: 0 24px;
+  max-width: 900px;
+}
+
+/* Eyebrow label */
+.entry-screen__eyebrow {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  display: block;
+  margin-bottom: 36px;
+}
+
+/* Main title */
+.entry-screen__title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 9vw, 116px);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  color: var(--color-white);
+  line-height: 1;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0;
+}
+
+.entry-screen__title-word {
+  display: inline-flex;
+  margin-right: 0.25em;
+}
+.entry-screen__title-word:last-child { margin-right: 0; }
+
+.entry-screen__letter {
+  display: inline-block;
+}
+
+/* Gold divider */
+.entry-screen__divider {
+  width: 60px;
+  height: 1px;
+  background: var(--color-gold);
+  margin: 36px auto 0;
+  transform-origin: left center;
+}
+
+/* Tagline */
+.entry-screen__tagline {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-white-dim);
+  letter-spacing: 0.1em;
+  margin: 28px 0 52px;
+  line-height: 1.6;
+}
+
+/* ENTER button */
+.entry-screen__enter {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 17px 54px;
+  border: 1px solid rgba(201, 168, 76, 0.65);
+  background: transparent;
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease, transform 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.entry-screen__enter::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.entry-screen__enter:hover::before { transform: scaleX(1); }
+.entry-screen__enter:hover {
+  color: var(--color-bg);
+  border-color: var(--color-gold);
+}
+.entry-screen__enter span {
+  position: relative;
+  z-index: 1;
+}
+.entry-screen__enter:active { transform: scale(0.98); }
+
+/* Corner accents */
+.entry-screen__corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: rgba(201, 168, 76, 0.3);
+  border-style: solid;
+}
+.entry-screen__corner--tl {
+  top: 32px; left: 32px;
+  border-width: 1px 0 0 1px;
+}
+.entry-screen__corner--tr {
+  top: 32px; right: 32px;
+  border-width: 1px 1px 0 0;
+}
+.entry-screen__corner--bl {
+  bottom: 32px; left: 32px;
+  border-width: 0 0 1px 1px;
+}
+.entry-screen__corner--br {
+  bottom: 32px; right: 32px;
+  border-width: 0 1px 1px 0;
+}
+
+@media (max-width: 768px) {
+  .entry-screen__corner { display: none; }
+  .entry-screen__enter {
+    padding: 15px 36px;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+  }
+}

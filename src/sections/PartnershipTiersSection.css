@@ -1,0 +1,180 @@
+.tiers-section {
+  height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px;
+  position: relative;
+}
+
+.tiers-section__inner {
+  max-width: 1400px;
+  width: 100%;
+}
+
+.tiers-header {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.tiers-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-top: 12px;
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: transparent;
+}
+
+.tier-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.tier-card:hover {
+  border-color: var(--tier-color);
+  background: rgba(255, 255, 255, 0.03);
+  transform: translateY(-2px);
+}
+
+.tier-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--tier-color);
+}
+
+.tier-card__name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.tier-card__investment {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--tier-color);
+  letter-spacing: 0.05em;
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 24px;
+}
+
+.tier-card__desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+  color: var(--color-white-dim);
+  margin-bottom: 20px;
+}
+
+.tier-card__benefits {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0 0 24px;
+  flex: 1;
+  padding: 0;
+}
+
+.tier-card__benefits li {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-white-dim);
+  display: flex;
+  gap: 8px;
+  line-height: 1.5;
+}
+
+.tier-card__check {
+  color: var(--tier-color);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.tier-card__btn {
+  border: none;
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 12px;
+  cursor: pointer;
+  margin-top: auto;
+  transition: opacity 0.2s ease;
+  width: 100%;
+}
+
+.tier-card__btn:hover {
+  opacity: 0.85;
+}
+
+/* Nav Button */
+.tiers-nav-btn {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  z-index: 10;
+  background: transparent;
+  border: 1px solid var(--color-gold-muted);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.tiers-nav-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.tiers-nav-btn--glow {
+  animation: tier-btn-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-color: var(--color-gold);
+}
+
+@keyframes tier-btn-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+
+@media (max-width: 1200px) {
+  .tiers-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+}
+
+@media (max-width: 768px) {
+  .tiers-section { padding: 40px 24px; }
+  .tiers-grid { grid-template-columns: 1fr; gap: 12px; }
+  .tier-card { padding: 24px; gap: 16px; }
+}

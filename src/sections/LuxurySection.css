@@ -1,0 +1,354 @@
+/* ================================================
+   LUXURY SECTION — Full-screen slideshow
+   ================================================ */
+
+.luxury-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Background image layer */
+.luxury-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.luxury-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.luxury-bg__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    rgba(8, 8, 8, 0.96) 0%,
+    rgba(8, 8, 8, 0.80) 45%,
+    rgba(8, 8, 8, 0.42) 100%
+  );
+}
+
+/* Fallback state — visible when image fails */
+.luxury-bg:not(:has(img)) {
+  /* fallback bg-color is set inline via style prop */
+}
+.luxury-bg:not(:has(img)) .luxury-bg__overlay {
+  background: linear-gradient(
+    110deg,
+    rgba(0,0,0,0.85) 0%,
+    rgba(0,0,0,0.6) 60%,
+    rgba(0,0,0,0.3) 100%
+  );
+}
+
+/* Content layout */
+.luxury-inner {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+  flex: 1;
+  padding: 140px 80px 100px;
+  max-width: 1360px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* LEFT: section header */
+.luxury-header__title {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 58px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--color-white);
+  margin-bottom: 8px;
+}
+
+.luxury-header__title em {
+  font-style: italic;
+  color: var(--color-gold-light);
+}
+
+.luxury-header__desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--color-white-dim);
+  margin-top: 24px;
+  margin-bottom: 40px;
+  max-width: 480px;
+}
+
+/* Dots */
+.luxury-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.luxury-dot {
+  width: 28px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.luxury-dot--active {
+  width: 44px;
+  background: var(--dot-accent, var(--color-gold));
+}
+
+.luxury-dot:hover:not(.luxury-dot--active) {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+/* Prev / Next nav */
+.luxury-nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.luxury-nav__btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--color-white);
+  font-size: 18px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.luxury-nav__btn:hover {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+.luxury-nav__count {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--color-white-muted);
+  letter-spacing: 0.1em;
+  min-width: 80px;
+  text-align: center;
+}
+
+/* RIGHT: brand card */
+.luxury-card {
+  background: rgba(10, 10, 10, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  padding: 48px;
+  position: relative;
+}
+
+/* Location badge */
+.luxury-card__location {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-white-muted);
+  margin-bottom: 20px;
+}
+
+.luxury-card__location-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Category */
+.luxury-card__category {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  margin-bottom: 12px;
+}
+
+/* Brand name */
+.luxury-card__brand {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 4vw, 58px);
+  font-weight: 300;
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+/* Tagline */
+.luxury-card__tagline {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-white-dim);
+  margin-bottom: 8px;
+}
+
+/* Description */
+.luxury-card__desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--color-white-muted);
+  margin-top: 20px;
+  margin-bottom: 28px;
+}
+
+/* Progress bar */
+.luxury-progress {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.luxury-progress__bar {
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+}
+
+/* CTA link */
+.luxury-card__cta {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: var(--color-gold);
+  text-decoration: none;
+  transition: letter-spacing var(--transition-fast);
+}
+
+.luxury-card__cta:hover {
+  letter-spacing: 0.25em;
+}
+
+/* Bottom leasing strip */
+.luxury-leasing-strip {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 48px;
+  padding: 28px 80px;
+  background: rgba(201, 168, 76, 0.08);
+  border-top: 1px solid rgba(201, 168, 76, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.luxury-leasing-strip__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.luxury-leasing-strip__label {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--color-white);
+}
+
+.luxury-leasing-strip__sub {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  color: var(--color-white-muted);
+}
+
+.luxury-leasing-strip__metrics {
+  display: flex;
+  gap: 32px;
+}
+
+.luxury-leasing-strip__metrics div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--color-white-muted);
+  gap: 3px;
+}
+
+.luxury-leasing-strip__metrics span {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.luxury-leasing-strip__btn {
+  background: var(--color-gold);
+  border: none;
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  white-space: nowrap;
+}
+
+.luxury-leasing-strip__btn:hover {
+  background: var(--color-gold-light);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .luxury-inner { grid-template-columns: 1fr; gap: 48px; padding: 120px 80px 80px; }
+  .luxury-leasing-strip { grid-template-columns: 1fr; gap: 24px; }
+}
+
+@media (max-width: 768px) {
+  .luxury-inner { padding: 100px 24px 60px; }
+  .luxury-card { padding: 32px 24px; }
+  .luxury-leasing-strip { padding: 24px; }
+  .luxury-leasing-strip__metrics { flex-wrap: wrap; gap: 16px; }
+}

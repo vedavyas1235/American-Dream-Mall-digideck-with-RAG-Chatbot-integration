@@ -1,0 +1,45 @@
+name: CI/CD Pipeline
+
+# Trigger this workflow on every push to main branch
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    # Run on latest Ubuntu server
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from GitHub
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+
+      # Step 2: Setup Node.js version 18
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          # Cache npm dependencies for faster builds
+          cache: 'npm'
+
+      # Step 3: Install all project dependencies
+      - name: Install Dependencies
+        run: npm install
+
+      # Step 4: Run TypeScript type-check to catch type errors early
+      - name: TypeScript Type Check
+        run: npx tsc --noEmit
+
+      # Step 5: Build the production version
+      # This catches any build errors before deployment
+      - name: Build Project
+        run: npm run build
+
+      # Step 6: Confirm build was successful
+      - name: Confirm Build Success
+        run: echo "✅ Build completed successfully. Vercel will now deploy automatically."

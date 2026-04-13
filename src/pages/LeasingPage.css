@@ -1,0 +1,218 @@
+/* ============================================
+   SHARED PHASE 2 UTILITIES — used across all pages
+   ============================================ */
+
+.btn-gold {
+  background: var(--color-gold);
+  border: none;
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+.btn-gold:hover { background: var(--color-gold-light); }
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--color-white-muted);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 15px 32px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+.btn-outline:hover { border-color: var(--color-white); color: var(--color-white); }
+
+.lp-section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 1.05;
+  margin: 12px 0 16px;
+}
+
+.lp-section-desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--color-white-muted);
+  max-width: 640px;
+}
+
+/* ============================================
+   LEASING PAGE
+   ============================================ */
+.lp { background: var(--color-bg); min-height: 100vh; }
+
+/* Hero */
+.lp-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+.lp-hero__bg {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+}
+.lp-hero__overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(105deg, rgba(8,8,8,0.97) 0%, rgba(8,8,8,0.75) 50%, rgba(8,8,8,0.4) 100%);
+}
+.lp-hero__content {
+  position: relative; z-index: 2;
+  padding: 140px 80px 80px;
+  max-width: 700px;
+}
+.lp-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5.5vw, 80px);
+  font-weight: 300;
+  line-height: 1.02;
+  color: var(--color-white);
+  margin: 16px 0 12px;
+}
+.lp-hero__title em { font-style: italic; color: var(--color-gold); }
+.lp-hero__desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--color-white-dim);
+  margin: 24px 0 36px;
+  max-width: 540px;
+}
+.lp-hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+/* Stats bar */
+.lp-stats {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background: rgba(201,168,76,0.07);
+  border-top: 1px solid rgba(201,168,76,0.2);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+}
+.lp-stat {
+  padding: 28px 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  border-right: 1px solid rgba(201,168,76,0.1);
+}
+.lp-stat:last-child { border-right: none; }
+.lp-stat__value { font-family: var(--font-display); font-size: 28px; font-weight: 400; color: var(--color-gold); line-height: 1; }
+.lp-stat__label { font-family: var(--font-body); font-size: 11px; font-weight: 600; color: var(--color-white); letter-spacing: 0.05em; }
+.lp-stat__sub { font-family: var(--font-body); font-size: 10px; color: var(--color-white-muted); }
+
+/* Courts */
+.lp-courts { padding: 100px 80px; }
+.lp-courts__inner { max-width: 1360px; margin: 0 auto; }
+.lp-courts__header { margin-bottom: 56px; }
+.lp-courts__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.lp-court-card {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 36px 28px;
+  position: relative;
+  transition: background 0.3s ease;
+}
+.lp-court-card:hover { background: rgba(255,255,255,0.04); }
+.lp-court-card__accent {
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--court-color);
+}
+.lp-court-card__level { font-family: var(--font-body); font-size: 9px; font-weight: 600; letter-spacing: 0.3em; color: var(--court-color); text-transform: uppercase; }
+.lp-court-card__name { font-family: var(--font-display); font-size: 28px; font-weight: 300; color: var(--color-white); margin: 8px 0 4px; }
+.lp-court-card__focus { display: block; font-family: var(--font-body); font-size: 10px; font-weight: 600; letter-spacing: 0.15em; color: var(--color-white-muted); text-transform: uppercase; margin-bottom: 12px; }
+.lp-court-card__tenants { font-family: var(--font-body); font-size: 13px; line-height: 1.7; color: var(--color-white-muted); }
+
+/* Tiers */
+.lp-tiers { padding: 0 80px 100px; }
+.lp-tiers__inner { max-width: 1360px; margin: 0 auto; }
+.lp-tiers__header { margin-bottom: 48px; }
+.lp-tiers__layout { display: grid; grid-template-columns: 280px 1fr; gap: 48px; align-items: start; }
+
+.lp-tier-tab {
+  display: flex; flex-direction: column; gap: 4px;
+  width: 100%; text-align: left;
+  background: none; border: none;
+  border-left: 2px solid transparent;
+  padding: 16px 20px; cursor: pointer;
+  transition: all 0.25s ease;
+}
+.lp-tier-tab--active {
+  border-left-color: var(--tab-color);
+  background: rgba(255,255,255,0.04);
+}
+.lp-tier-tab:hover:not(.lp-tier-tab--active) { background: rgba(255,255,255,0.02); }
+.lp-tier-tab__name { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--color-white); }
+.lp-tier-tab--active .lp-tier-tab__name { color: var(--tab-color); }
+.lp-tier-tab__sqft { font-family: var(--font-body); font-size: 10px; color: var(--color-white-muted); }
+
+.lp-tiers__panel {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 40px;
+}
+.lp-panel__header { margin-bottom: 20px; }
+.lp-panel__accent { width: 32px; height: 2px; background: var(--panel-color); margin-bottom: 12px; }
+.lp-panel__tier { font-family: var(--font-display); font-size: 36px; font-weight: 300; color: var(--color-white); margin: 0 0 4px; }
+.lp-panel__range { font-family: var(--font-body); font-size: 12px; font-weight: 500; color: var(--panel-color); letter-spacing: 0.1em; }
+.lp-panel__desc { font-family: var(--font-body); font-size: 14px; line-height: 1.8; color: var(--color-white-muted); margin-bottom: 28px; }
+
+.lp-panel__table { border: 1px solid rgba(255,255,255,0.06); }
+.lp-panel__table-head {
+  display: grid; grid-template-columns: 1.5fr 1fr 1.5fr 2fr;
+  background: rgba(255,255,255,0.04);
+  padding: 12px 16px; gap: 16px;
+  font-family: var(--font-body); font-size: 9px;
+  font-weight: 700; letter-spacing: 0.2em;
+  color: var(--color-gold); text-transform: uppercase;
+}
+.lp-panel__table-row {
+  display: grid; grid-template-columns: 1.5fr 1fr 1.5fr 2fr;
+  padding: 14px 16px; gap: 16px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  align-items: center;
+}
+.lp-panel__table-row:hover { background: rgba(255,255,255,0.02); }
+.lp-panel__tenant-name { font-family: var(--font-body); font-size: 13px; font-weight: 600; color: var(--color-white); }
+.lp-panel__sqft { font-family: var(--font-body); font-size: 12px; color: var(--color-gold); }
+.lp-panel__court { font-family: var(--font-body); font-size: 11px; color: var(--color-white-dim); }
+.lp-panel__note { font-family: var(--font-body); font-size: 11px; color: var(--color-white-muted); font-style: italic; }
+
+/* CTA shared */
+.lp-cta { padding: 100px 80px; background: rgba(201,168,76,0.05); border-top: 1px solid rgba(201,168,76,0.15); }
+.lp-cta__inner { max-width: 700px; margin: 0 auto; text-align: center; }
+.lp-cta__title { font-family: var(--font-display); font-size: clamp(32px, 3.5vw, 52px); font-weight: 300; color: var(--color-white); margin-bottom: 16px; }
+.lp-cta__desc { font-family: var(--font-body); font-size: 15px; line-height: 1.85; color: var(--color-white-muted); margin-bottom: 36px; }
+.lp-cta__actions { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; }
+.lp-cta__contact { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+.lp-cta__contact span { font-family: var(--font-body); font-size: 12px; color: var(--color-white-muted); }
+
+@media (max-width: 1200px) {
+  .lp-stats { grid-template-columns: repeat(3, 1fr); }
+  .lp-courts__grid { grid-template-columns: repeat(2, 1fr); }
+  .lp-tiers__layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .lp-hero__content { padding: 100px 24px 60px; }
+  .lp-courts { padding: 60px 24px; }
+  .lp-courts__grid { grid-template-columns: 1fr; }
+  .lp-tiers { padding: 0 24px 60px; }
+  .lp-tiers__panel { padding: 24px; }
+  .lp-panel__table-head, .lp-panel__table-row { grid-template-columns: 1fr 1fr; }
+  .lp-panel__court, .lp-panel__note { display: none; }
+  .lp-cta { padding: 60px 24px; }
+  .lp-stats { grid-template-columns: repeat(2, 1fr); }
+}

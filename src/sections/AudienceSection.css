@@ -1,0 +1,124 @@
+.audience-section {
+  height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px;
+  position: relative;
+}
+
+.audience-section__inner {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.audience-header {
+  margin-bottom: 60px;
+  margin-top: 40px;
+}
+
+.audience-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 72px);
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 1.1;
+  margin-top: 12px;
+}
+
+.audience-title em {
+  font-style: italic;
+  color: var(--color-gold-light);
+}
+
+.audience-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 60px;
+}
+
+.audience-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: 40px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.4s ease;
+}
+
+.audience-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-gold-muted);
+  background: var(--color-surface-2);
+}
+
+.audience-card__icon {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.audience-card__value {
+  font-family: var(--font-display);
+  font-size: 36px;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.audience-card__label {
+  font-family: var(--font-body);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-white-muted);
+}
+
+/* Nav Button */
+.audience-nav-btn {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  z-index: 10;
+  background: transparent;
+  border: 1px solid var(--color-gold-muted);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.audience-nav-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.audience-nav-btn--glow {
+  animation: audience-btn-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-color: var(--color-gold);
+}
+
+@keyframes audience-btn-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+
+@media (max-width: 1024px) {
+  .audience-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .audience-section { padding: 40px 24px; }
+  .audience-grid { gap: 12px; }
+  .audience-card { padding: 24px 16px; }
+  .audience-card__value { font-size: 28px; }
+}

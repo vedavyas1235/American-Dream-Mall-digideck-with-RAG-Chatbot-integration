@@ -1,0 +1,132 @@
+.leasing-intro {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 80px;
+}
+
+.leasing-intro__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.leasing-intro__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 8, 8, 0.7) 0%,
+    rgba(8, 8, 8, 0.9) 100%
+  );
+  z-index: 1;
+}
+
+.leasing-intro__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.leasing-intro-btn {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  z-index: 10;
+  background: transparent;
+  border: 1px solid var(--color-gold-muted);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.leasing-intro-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.leasing-intro-btn--glow {
+  animation: leasing-btn-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-color: var(--color-gold);
+}
+
+@keyframes leasing-btn-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+
+.leasing-intro__content {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin-bottom: 60px;
+}
+
+.leasing-intro__title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 84px);
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 1;
+  margin-top: 20px;
+}
+
+.leasing-intro__title em {
+  font-style: italic;
+  color: var(--color-gold-light);
+}
+
+.leasing-intro__desc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-white-dim);
+  margin-top: 32px;
+}
+
+.leasing-intro__stats {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 60px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+  max-width: fit-content;
+}
+
+.leasing-intro__stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.leasing-intro__stat-value {
+  font-family: var(--font-display);
+  font-size: 32px;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.leasing-intro__stat-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-white-muted);
+  margin-top: 8px;
+}

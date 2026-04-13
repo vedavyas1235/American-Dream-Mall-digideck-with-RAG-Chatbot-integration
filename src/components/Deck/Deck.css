@@ -1,0 +1,370 @@
+/* =========================================
+   DECK SHELL
+   ========================================= */
+
+.deck {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* =========================================
+   PROGRESS BAR
+   ========================================= */
+
+.deck-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-light));
+  z-index: 300;
+  pointer-events: none;
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================
+   TOP BAR
+   ========================================= */
+
+.deck-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: rgba(8, 8, 8, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 0 20px;
+}
+
+.deck-topbar__hamburger {
+  position: absolute;
+  left: 20px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.deck-topbar__hamburger:hover {
+  background: rgba(201, 168, 76, 0.08);
+}
+
+.deck-topbar__bar {
+  width: 22px;
+  height: 1.5px;
+  background: var(--color-gold);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+.deck-topbar__bar--open:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.deck-topbar__bar--open:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.deck-topbar__bar--open:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+.deck-topbar__title {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.deck-topbar__counter {
+  position: absolute;
+  right: 20px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--color-white-muted);
+}
+
+/* =========================================
+   DRAWER OVERLAY
+   ========================================= */
+
+.deck-drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 210;
+  cursor: pointer;
+}
+
+/* =========================================
+   DRAWER PANEL
+   ========================================= */
+
+.deck-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100%;
+  background: #080808;
+  border-right: 1px solid rgba(201, 168, 76, 0.22);
+  z-index: 220;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.deck-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  height: 52px;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+  flex-shrink: 0;
+}
+
+.deck-drawer__brand {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+}
+
+.deck-drawer__close {
+  background: none;
+  border: none;
+  color: var(--color-white-muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s;
+  font-weight: 300;
+}
+.deck-drawer__close:hover { color: var(--color-white); }
+
+.deck-drawer__nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 0 40px;
+}
+.deck-drawer__nav::-webkit-scrollbar { width: 3px; }
+.deck-drawer__nav::-webkit-scrollbar-track { background: transparent; }
+.deck-drawer__nav::-webkit-scrollbar-thumb { background: var(--color-gold-dark); border-radius: 2px; }
+
+/* =========================================
+   DRAWER CHAPTERS & SLIDES
+   ========================================= */
+
+.deck-chapter {
+  margin-bottom: 2px;
+}
+
+.deck-chapter__label {
+  display: block;
+  width: 100%;
+  padding: 9px 24px 7px;
+  font-family: var(--font-body);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--color-gold);
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.deck-chapter__label:hover {
+  background: rgba(201, 168, 76, 0.05);
+}
+
+.deck-chapter__slides {
+  padding: 0;
+}
+
+.deck-slide-btn {
+  display: block;
+  width: 100%;
+  padding: 7px 24px 7px 38px;
+  background: none;
+  border: none;
+  border-left: 2px solid transparent;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--color-white-muted);
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+}
+.deck-slide-btn:hover {
+  color: var(--color-white);
+  background: rgba(255, 255, 255, 0.04);
+}
+.deck-slide-btn--active {
+  color: var(--color-white) !important;
+  border-left-color: var(--color-gold) !important;
+  background: rgba(201, 168, 76, 0.07) !important;
+}
+
+.deck-drawer__divider {
+  height: 1px;
+  background: rgba(201, 168, 76, 0.1);
+  margin: 8px 24px;
+}
+
+/* =========================================
+   NAVIGATION ARROWS
+   ========================================= */
+
+.deck-arrows {
+  position: fixed;
+  bottom: 32px;
+  left: 32px;
+  right: 32px;
+  z-index: 190;
+  pointer-events: none;
+}
+
+.deck-arrow--prev {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.deck-arrow--next {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.deck-arrow--glow {
+  animation: gold-glow 2s infinite alternate;
+}
+
+.deck-arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(201, 168, 76, 0.38);
+  background: rgba(8, 8, 8, 0.75);
+  backdrop-filter: blur(10px);
+  color: var(--color-gold);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  pointer-events: all;
+}
+.deck-arrow:hover {
+  border-color: var(--color-gold);
+  background: rgba(201, 168, 76, 0.12);
+  transform: scale(1.06);
+}
+.deck-arrow:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.deck-slide-indicator {
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--color-white-muted);
+  min-width: 52px;
+  text-align: center;
+}
+
+/* =========================================
+   SLIDE WRAPPER
+   ========================================= */
+
+.deck-slide-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.deck-slide-wrapper::-webkit-scrollbar { width: 4px; }
+.deck-slide-wrapper::-webkit-scrollbar-track { background: transparent; }
+.deck-slide-wrapper::-webkit-scrollbar-thumb { background: rgba(201, 168, 76, 0.35); border-radius: 2px; }
+
+/* =========================================
+   HERO SKIP INTRO BUTTON (inside HeroSection)
+   ========================================= */
+
+.hero__skip-intro {
+  position: fixed;
+  bottom: 32px;
+  right: 90px;
+  z-index: 180;
+  height: 44px;
+  background: rgba(8, 8, 8, 0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 0 22px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.hero__skip-intro:hover {
+  background: rgba(201, 168, 76, 0.12);
+  border-color: var(--color-gold);
+}
+.hero__skip-intro svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* =========================================
+   RESPONSIVE
+   ========================================= */
+
+@media (max-width: 768px) {
+  .deck-drawer {
+    width: 260px;
+  }
+  .deck-topbar__title {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+  }
+  .deck-arrows {
+    left: 16px;
+    right: 16px;
+  }
+  .deck-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+}

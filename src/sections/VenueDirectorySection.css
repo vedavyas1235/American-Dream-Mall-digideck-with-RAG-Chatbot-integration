@@ -1,0 +1,201 @@
+.venue-dir-section {
+  padding: 80px 80px;
+  background: var(--color-surface);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.venue-dir-section__inner {
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.venue-dir-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.venue-dir-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 300;
+  color: var(--color-white);
+  margin-top: 8px;
+}
+
+.venue-dir-title em {
+  font-style: italic;
+  color: var(--color-gold-light);
+}
+
+.venue-dir-table-wrap {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  margin-bottom: 32px;
+}
+
+.venue-dir-row {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 16px 40px;
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.4s ease;
+}
+
+.venue-dir-row:last-child {
+  border-bottom: none;
+}
+
+.venue-dir-row:hover {
+  background: rgba(201, 168, 76, 0.05);
+}
+
+.venue-dir-row__num {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--color-gold);
+  opacity: 0.6;
+}
+
+.venue-dir-row__name {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--color-white);
+  min-width: 250px;
+}
+
+.venue-dir-row__divider {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--color-border), transparent);
+  opacity: 0.3;
+}
+
+.venue-dir-row__cap {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--color-gold);
+  white-space: nowrap;
+}
+
+.venue-dir-row__type {
+  font-family: var(--font-body);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-white-muted);
+  width: 200px;
+  text-align: right;
+  opacity: 0.8;
+}
+
+.venue-dir-row__btn {
+  background: transparent;
+  border: 1px solid var(--color-gold-muted);
+  color: var(--color-white);
+  padding: 8px 20px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.venue-dir-row__btn:hover {
+  background: var(--color-gold);
+  color: var(--color-bg);
+  border-color: var(--color-gold);
+}
+
+/* KPIs */
+.venue-dir-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+}
+
+.venue-dir-kpi {
+  background: var(--color-surface);
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.venue-dir-kpi__value {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 200;
+  color: var(--color-gold);
+  line-height: 1;
+}
+
+.venue-dir-kpi__label {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white-muted);
+}
+
+@media (max-width: 1024px) {
+  .venue-dir-row { padding: 16px 20px; gap: 16px; }
+  .venue-dir-row__name { min-width: 150px; font-size: 16px; }
+  .venue-dir-row__divider { display: none; }
+  .venue-dir-row__type { width: auto; }
+}
+
+@media (max-width: 768px) {
+  .venue-dir-row { flex-wrap: wrap; justify-content: space-between; }
+  .venue-dir-row__type { width: 100%; text-align: left; order: 3; }
+  .venue-dir-row__name { order: 1; }
+  .venue-dir-row__cap { order: 2; }
+}
+
+/* Venue Details navigation button */
+.venue-dir-next-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 20;
+  background: rgba(8, 8, 8, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.venue-dir-next-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+.venue-dir-next-btn--glow {
+  animation: vd-btn-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-color: var(--color-gold);
+}
+
+@keyframes vd-btn-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}

@@ -1,0 +1,237 @@
+.events-section {
+  padding: 60px 80px 40px;
+  background: var(--color-surface);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.events-section__layout {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* LEFT SIDE */
+.events-left {
+  flex: 0 0 45%;
+  max-width: 500px;
+}
+
+.events-section__header {
+  margin-bottom: 60px;
+}
+
+.events-section__title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 1.05;
+  margin-top: 16px;
+}
+
+.events-section__title em {
+  font-style: italic;
+  color: var(--color-gold-light);
+}
+
+.events-slideshow {
+  position: relative;
+}
+
+.events-slideshow__content {
+  min-height: 160px;
+}
+
+.events-slideshow__desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-white-dim);
+}
+
+/* Dots */
+.events-dots {
+  display: flex;
+  gap: 12px;
+  margin-top: 40px;
+}
+
+.events-dot {
+  width: 32px;
+  height: 2px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.events-dot--active {
+  width: 48px;
+  background: var(--color-gold);
+}
+
+/* Venue Directory Button */
+.venue-directory-btn {
+  position: absolute;
+  bottom: 32px;
+  right: 32px;
+  background: transparent;
+  border: 1px solid var(--color-gold-muted);
+  color: var(--color-gold);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  z-index: 10;
+}
+
+.venue-directory-btn:hover {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+/* Glow animation */
+.venue-directory-btn--glow {
+  animation: venue-btn-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  border-color: var(--color-gold);
+}
+
+@keyframes venue-btn-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0.4); }
+  70% { box-shadow: 0 0 0 15px rgba(201, 168, 76, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(201, 168, 76, 0); }
+}
+
+/* RIGHT SIDE (COLLAGE) */
+.events-right {
+  flex: 1;
+  position: relative;
+}
+
+.events-collage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1/1; 
+  max-height: 700px;
+}
+
+.events-collage__item {
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.events-collage__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+
+.events-collage__item:hover img {
+  transform: scale(1.05);
+}
+
+.events-collage__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 60%);
+  transition: background 0.4s ease;
+}
+
+.events-collage__item:not(.events-collage__item--active) .events-collage__overlay {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.events-collage__item--active {
+  border-color: var(--color-gold);
+  z-index: 10 !important;
+  box-shadow: 0 20px 50px rgba(201, 168, 76, 0.15);
+  transform: scale(1.03);
+}
+
+.events-collage__title {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 1.2;
+}
+
+/* COLLAGE PLACEMENTS */
+
+/* 1: Concerts (Main Center/Right) */
+.events-collage__item--0 {
+  width: 55%;
+  height: 75%;
+  top: 5%;
+  right: 10%;
+  z-index: 2;
+}
+
+/* 2: Brand Activations (Portrait Left) */
+.events-collage__item--1 {
+  width: 40%;
+  height: 50%;
+  bottom: 10%;
+  left: 5%;
+  z-index: 3;
+}
+
+/* 3: Celebs (Landscape Top Left) */
+.events-collage__item--2 {
+  width: 40%;
+  height: 30%;
+  top: 10%;
+  left: 0%;
+  z-index: 1;
+}
+
+/* 4: Corporate (Portrait Bottom Right) */
+.events-collage__item--3 {
+  width: 30%;
+  height: 40%;
+  bottom: 0%;
+  right: 0%;
+  z-index: 4;
+}
+
+/* Smaller texts for smaller framed images */
+.events-collage__item--1 .events-collage__title,
+.events-collage__item--2 .events-collage__title,
+.events-collage__item--3 .events-collage__title {
+  font-size: 16px;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+}
+
+@media (max-width: 1024px) {
+  .events-section__layout { flex-direction: column; gap: 40px; }
+  .events-left { max-width: 100%; flex: auto; }
+  .events-collage { aspect-ratio: 4/3; }
+}
+
+@media (max-width: 768px) {
+  .events-section { padding: 80px 24px; }
+  .events-collage__title { font-size: 14px !important; }
+}
