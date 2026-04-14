@@ -7,22 +7,38 @@ interface Message {
   text: string
 }
 
-const API_BASE = import.meta.env.VITE_RAG_API_URL ?? 'http://localhost:8000'
+// Fallback to the live production URL if the environment variable is missing
+const API_BASE = import.meta.env.VITE_RAG_API_URL || 'https://vedavyas1235-american-dream-mall-chatbot.hf.space'
 
 async function queryRAG(question: string): Promise<string> {
-  const res = await fetch(`${API_BASE}/ask`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ question }),
-  })
+  console.log(`Querying RAG at: ${API_BASE}/ask`);
+  try {
+    const res = await fetch(`${API_BASE}/ask`, {
+      method: 'POST',
+      mode: 'cors',
+      credentials: 'omit',
+      headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json' 
+      },
+      body: JSON.stringify({ question }),
+    })
 
-  if (!res.ok) {
-    const err = await res.text()
-    throw new Error(`Backend error ${res.status}: ${err}`)
+    if (!res.ok) {
+      const errText = await res.text()
+      console.error('RAG Error details:', errText)
+      throw new Error(`Server responded with ${res.status}`)
+    }
+
+    const data = await res.json()
+    return data.answer || "I'm sorry, I couldn't find a specific answer to that. Could you try rephrasing?"
+  } catch (error: any) {
+    console.error('Fetch error:', error)
+    if (error.message.includes('Failed to fetch')) {
+      throw new Error('Connection failed. This might be a CORS issue or the server is down.')
+    }
+    throw error
   }
-
-  const data = await res.json()
-  return data.answer ?? JSON.stringify(data)
 }
 
 export default function ChatBot({ isLastSlide }: { isLastSlide: boolean }) {
@@ -171,6 +187,9 @@ export default function ChatBot({ isLastSlide }: { isLastSlide: boolean }) {
                 onChange={e => setInput(e.target.value)}
                 onKeyDown={handleKey}
                 rows={1}
+                autoComplete="off"
+                autoCorrect="off"
+                spellCheck={false}
               />
               <button
                 className="chatbot-panel__send"
