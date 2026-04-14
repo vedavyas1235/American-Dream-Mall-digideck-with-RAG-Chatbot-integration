@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🏬 American Dream Mall <br/> Digital Sales Platform & AI Chatbot</h1>
+  <h1>🏬 American Dream Mall <br/> Digital Platform/Digital Deck & AI Chatbot</h1>
   <p><strong>A high-performance modern web application built as a premium digital sales experience, featuring an integrated context-aware AI Assistant powered by a custom Retrieval-Augmented Generation (RAG) backend.</strong></p>
 </div>
 
@@ -9,7 +9,7 @@
 
 This project serves as a comprehensive, B2B-focused digital sales and leasing platform for the American Dream Mall—North America's largest entertainment and retail complex. It is designed to attract ultra-luxury retail partners, major brands, and global sponsors by showcasing the property's immense scale, architectural grandeur, and unprecedented foot traffic.
 
-The platform has been redesigned into a modular, non-linear digital deck. It features a sophisticated **Events & Platform** chapter that guides users through a deep-dive of the mall's 40M+ annual audience and versatile venue technical specifications via a split-screen interactive directory.
+The platform has been designed into a modular, non-linear digital deck. It features a sophisticated **Events & Platform** chapter that guides users through a deep-dive of the mall's 40M+ annual audience and versatile venue technical specifications via a split-screen interactive directory.
 
 To provide immediate, data-backed answers, the platform features a fully custom **RAG-powered AI Assistant** integrated into the final "Partner With Us" stage. The chatbot is bound strictly to internal research reports, ensuring it provides accurate, non-hallucinated leasing figures and architectural statistics.
 
